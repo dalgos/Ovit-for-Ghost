@@ -1,0 +1,64 @@
+{{#is "index, author"}}
+
+	{{#foreach posts}}
+	    <div class="bh-timeline-block" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+			<div class="bh-timeline-img bh-picture">
+				{{#author}}
+					<a href="{{url}}"><img src="{{image}}" alt="{{name}}"></a>
+				{{/author}}
+			</div>
+	
+			<div class="bh-timeline-content z-depth-1">
+				{{#if image}}
+					<a href="{{url}}"><img src="{{image}}" class="post-img"></a>
+				{{/if}}
+				<a href="{{url}}">
+					<h2 class="post-title" itemprop="name headline">{{title}}</h2>
+				</a>
+				<p>{{excerpt words="25"}}</p>
+				<span class="bh-date">{{date published_at format="MMMM DD"}}</span>
+			</div> 
+		</div>
+	{{/foreach}}
+
+{{else}}
+	<div class="grid">
+		<div class="row">
+		{{#foreach posts}}
+		    <div class="col s12 m2 l4 item {{#foreach tags}}{{name}}{{/foreach}}" itemprop="blogPost" itemscope itemtype="http://schema.org/BlogPosting">
+		        <div class="card">
+		        	{{#if image}}
+		            <div class="card-image waves-effect waves-block waves-light">
+	                    <a href="{{url}}">
+	                        <img src="{{image}}" alt="{{title}}">
+	                    </a>
+	                    <span class="card-title" itemprop="name headline">{{title}}</span>
+		            </div>
+		            
+		            <div class="card-content">
+		                <p>{{excerpt words="30"}}</p>
+		            </div>
+		            
+		            {{else}}
+	            	<div class="card-image waves-effect waves-block waves-light">
+                    	{{content words="0"}}
+		            </div>
+		            
+		            <div class="card-content">
+		            	<span style="color:rgba(0,0,0,0.87);" class="card-title" itemprop="name headline">{{title}}</span>
+		                <p>{{excerpt words="30"}}</p>
+		            </div>
+		            {{/if}}
+		            
+		            <div class="card-action">
+		                <a href="{{url}}">READ MORE</a>
+		            </div>
+		        </div>
+		    </div>
+		{{/foreach}}
+		</div>
+	</div>
+{{/is}}
+
+
+

@@ -1,0 +1,55 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+
+{{! The big featured header }}
+
+{{! Everything inside the #author tags pulls data from the author }}
+{{#author}}
+<header class="main-header" {{#if cover}} style="background-image: url({{cover}})" {{else}} style="background-image: url({{@blog.cover}})" {{/if}}>
+    <div class="main-nav">
+        {{#if image}}<a class="blog-logo" href="{{url}}"><img src="{{image}}" alt="{{name}}" /></a>{{/if}}
+        {{#if @blog.navigation}}
+            <a href="#" data-activates="slide-out" class="side-btn button-collapse">
+                <span class="text-btn">Menu</span> <i class="menu-btn material-icons">menu</i>
+            </a>
+        {{/if}}
+    </div>
+    
+    <div class="main-header-content" itemprop="author">
+        <h1 class="page-title" itemprop="name headline">{{name}}</h1>
+        <section class="post-meta">
+            {{#if location}}<i class="material-icons">place</i> {{location}} {{/if}}
+            <br/>
+            {{#if website}}<i class="material-icons">public</i> <a href="{{website}}">{{website}}</a> {{/if}}
+            <br/>
+            <i class="material-icons">style</i> {{plural ../pagination.total empty='No posts' singular='% post' plural='% posts'}}
+        </section>
+    </div>
+</header>
+{{/author}}
+
+<a data-scroll href="#content" class="scroll-btn btn-floating btn-large waves-effect waves-light red"><i class="material-icons">expand_more</i></a>
+
+{{! The main content area on the homepage }}
+<main id="content" class="content" role="main">
+
+    <section id="bh-timeline" class="bh-container">
+        <div class="bh-timeline-block">
+            {{#author}}
+			<div class="bh-timeline-img bh-picture">
+				<a href="{{url}}"><img src="{{image}}" alt="{{name}}"></a>
+			</div>
+	
+			<div class="bh-timeline-content z-depth-1">
+			    <h2 class="post-title">About me</h2>
+				<p>{{bio}}</p>
+				<span class="bh-date">{{location}}</span>
+			</div> 
+			{{/author}}
+		</div>
+        {{> "loop"}}
+    </section>
+    
+    {{pagination}}
+
+</main>

@@ -1,0 +1,30 @@
+{{!< default}}
+
+<header class="main-header" {{#if @blog.cover}} style="background-image: url({{@blog.cover}}){{/if}}" itemscope itemtype="http://schema.org/Organization">
+    <div class="main-nav">
+        {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}" itemprop="url"><img src="{{@blog.logo}}" alt="Blog Logo" itemprop="logo"></a>{{/if}}
+        {{#if @blog.navigation}}
+            <a href="#" data-activates="slide-out" class="side-btn button-collapse">
+                <span class="text-btn">Menu</span> <i class="menu-btn material-icons">menu</i>
+            </a>
+        {{/if}}
+    </div>
+    
+    <div class="main-header-content">
+        <h1 class="page-title" itemprop="name">{{@blog.title}}</h1>
+        <h2 class="page-description" itemprop="description">{{@blog.description}}</h2>
+    </div>
+</header>
+
+<a data-scroll href="#content" class="scroll-btn btn-floating btn-large waves-effect waves-light red"><i class="material-icons">expand_more</i></a>
+
+{{! The main content area on the homepage }}
+<main id="content" class="content" role="main">
+
+    <section id="bh-timeline" class="bh-container">
+        {{> "loop"}}
+    </section>
+    
+    {{pagination}}
+
+</main>

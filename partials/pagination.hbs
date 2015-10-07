@@ -1,0 +1,13 @@
+<div class="pagination">
+    {{#if next}}
+        <a class="btn-floating btn-large waves-effect waves-light red older" href="{{page_url next}}">
+            <i class="material-icons">add</i>
+        </a>
+    {{/if}}
+    
+    {{#if prev}}
+        <a class="btn-floating btn-large waves-effect waves-light red newer" href="{{page_url prev}}">
+            <i class="material-icons">remove</i>
+        </a>
+    {{/if}}
+</div>
