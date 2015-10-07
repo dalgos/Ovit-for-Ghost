@@ -1,0 +1,63 @@
+{{!< default}}
+
+{{! This is a page template. A page outputs content just like any other post, and has all the same
+    attributes by default, but you can also customise it to behave differently if you prefer. }}
+
+{{! Everything inside the #post tags pulls data from the page }}
+{{#post}}
+
+<header class="main-header" {{#if image}} style="background-image: url({{image}})" {{else}} style="background-image: url({{@blog.cover}})" {{/if}}>
+    <div class="main-header-content">
+        <h1 class="page-title">{{title}}</h1>
+        <section class="post-meta">
+            <i class="mdi-device-access-alarms"></i> <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}">{{date format="DD MMMM YYYY"}}</time>
+            <br/>
+            <i class="mdi-action-label"></i> {{tags}}
+            <br/>
+            <i class="mdi-action-account-circle"></i> {{author}}
+        </section>
+    </div>
+</header>
+
+<main class="content" role="main">
+    
+    <article class="{{post_class}} card-panel container">
+        <a data-scroll href="#post-content" class="read-btn btn-floating btn-large red">
+            <i class="large mdi-action-assignment"></i>
+        </a>
+    
+        <section id="post-content" class="post-content">
+            
+            {{content}}
+            
+        </section>
+
+    </article>
+</main>
+
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red">
+        <i class="large mdi-editor-mode-edit"></i>
+    </a>
+    
+    <ul>
+        <li>
+            <a class="btn-floating red" href="https://plus.google.com/share?url={{url absolute="true"}}"
+               onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><i class="large icon-google-plus"></i></a>
+        </li>
+        
+        <li>
+            <a class="btn-floating indigo darken-1" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+               onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;"><i class="large icon-facebook"></i></a>
+        </li>
+        
+        <li>
+            <a class="btn-floating blue lighten-1" href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"
+               onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i class="large icon-twitter"></i></a>
+        </li>
+        
+        <li>
+            <a  data-scroll href="#" class="btn-floating blue"><i class="large mdi-navigation-expand-less"></i></a>
+        </li>
+    </ul>
+</div>

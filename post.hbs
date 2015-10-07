@@ -1,0 +1,80 @@
+{{!< default}}
+
+{{! The comment above "< default" means - insert everything in this file into
+    the {body} of the default.hbs template, which contains our header/footer. }}
+
+{{! Everything inside the #post tags pulls data from the post }}
+{{#post}}
+
+<header class="main-header" {{#if image}} style="background-image: url({{image}})" {{else}} style="background-image: url({{@blog.cover}})" {{/if}}>
+    <div class="main-header-content">
+        <h1 class="page-title" itemprop="name headline">{{title}}</h1>
+        <section class="post-meta">
+            <i class="material-icons">timer</i> <time class="post-date" datetime="{{date format='YYYY-MM-DD'}}" itemprop="datePublished">{{date format="DD MMMM YYYY"}}</time>
+            <br/>
+            <i class="material-icons">local_offer</i> {{tags}}
+            <br/>
+            <i class="material-icons">person_pin</i> {{author}}
+        </section>
+    </div>
+</header>
+
+<main class="content" role="main">
+    
+    <article class="{{post_class}} card-panel container">
+        <section id="post-content" class="post-content" itemprop="articleBody">
+            {{content}}
+            
+            <div id="disqus_thread"></div>
+        </section>
+
+    </article>
+</main>
+
+<aside class="read-next z-depth-1">
+    {{#next_post}}
+    <a class="read-next-story {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}" href="{{url}}">
+        <section class="post">
+            <h2>{{title}}</h2>
+            <p>{{excerpt words="10"}}&hellip;</p>
+        </section>
+    </a>
+    {{/next_post}}
+    {{#prev_post}}
+    <a class="read-next-story prev {{#if image}}" style="background-image: url({{image}}){{else}}no-cover{{/if}}" href="{{url}}">
+        <section class="post">
+            <h2>{{title}}</h2>
+            <p>{{excerpt words="10"}}&hellip;</p>
+        </section>
+    </a>
+    {{/prev_post}}
+</aside>
+
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <a class="btn-floating btn-large red">
+        <i class="material-icons">share</i>
+    </a>
+    
+    <ul>
+        <li>
+            <a class="btn-floating red" href="https://plus.google.com/share?url={{url absolute="true"}}"
+               onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;"><i class="large icon-google-plus"></i></a>
+        </li>
+        
+        <li>
+            <a class="btn-floating indigo darken-1" href="https://www.facebook.com/sharer/sharer.php?u={{url absolute="true"}}"
+               onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;"><i class="large icon-facebook"></i></a>
+        </li>
+        
+        <li>
+            <a class="btn-floating blue lighten-1" href="https://twitter.com/share?text={{encode title}}&amp;url={{url absolute="true"}}"
+               onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;"><i class="large icon-twitter"></i></a>
+        </li>
+        
+        <li>
+            <a  data-scroll href="#" class="btn-floating blue"><i class="material-icons">expand_less</i></a>
+        </li>
+    </ul>
+</div>
+
+{{/post}}

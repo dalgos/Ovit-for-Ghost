@@ -1,0 +1,36 @@
+{{!< default}}
+{{! The tag above means - insert everything in this file into the {body} of the default.hbs template }}
+
+{{! If we have a tag cover, display that - else blog cover - else nothing }}
+<header class="main-header" {{#if @blog.cover}} style="background-image: url({{@blog.cover}})" {{else}} style="background-image: url({{cover}})" {{/if}}>
+    <div class="main-nav">
+        {{#if @blog.logo}}<a class="blog-logo" href="{{@blog.url}}"><img src="{{@blog.logo}}" alt="Blog Logo" /></a>{{/if}}
+        {{#if @blog.navigation}}
+            <a href="#" data-activates="slide-out" class="side-btn button-collapse">
+                <span class="text-btn">Menu</span> <i class="menu-btn material-icons">menu</i>
+            </a>
+        {{/if}}
+    </div>
+    
+    <div class="main-header-content">
+        <h1 class="page-title" itemprop="name headline">{{tag.name}}</h1>
+        <h2 class="page-description" itemprop="description">
+            {{#if tag.description}}
+                {{tag.description}}
+            {{else}}
+                A {{pagination.total}} - post collection
+            {{/if}}
+        </h2>
+    </div>
+</header>
+
+<a data-scroll href="#content" class="scroll-btn btn-floating btn-large waves-effect waves-light red"><i class="material-icons">expand_more</i></a>
+
+{{! The main content area on the homepage }}
+<main id="content" class="content" role="main">
+
+    {{> "loop"}}
+
+    {{pagination}}
+
+</main>
